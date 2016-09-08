@@ -1,0 +1,28 @@
+dre@dre-VirtualBox:/var/vhosts/drealities$ mysql -u root -p
+
+mysql> create database dre_wp
+    -> ;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> use mysql;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> insert into user (Host, User, Password) VALUES ('localhost', 'dre_wp', PASSWORD('asdf;lkj'));
+Query OK, 1 row affected, 3 warnings (0.01 sec)
+
+mysql> flush privileges;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> use mysql
+Database changed
+mysql> grant usage on dre_wp.* to dre_wp identified by 'asdf;lkj';
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> flush privileges;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> exit;
+
+dre@dre-VirtualBox:/var/vhosts/drealities/database$ mysql -u root -p dre_wp < drealities.sql

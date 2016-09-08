@@ -1,0 +1,32 @@
+#website.net
+<VirtualHost *:80>
+        ServerAdmin contact@website.net
+
+        ServerName www.website.net
+        ServerAlias website.net 
+
+        DocumentRoot /var/vhosts/website/web
+        <Directory />
+                Options FollowSymLinks
+                AllowOverride None
+        </Directory>
+        <Directory /var/vhosts/website/web>
+                Options FollowSymLinks MultiViews
+                AllowOverride All
+                Order allow,deny
+                allow from all
+                # Uncomment this directive is you want to see apache2's
+                # default start page (in /apache2-default) when you go to /
+                #RedirectMatch ^/$ /apache2-default/
+        </Directory>
+
+        ErrorLog /var/log/apache2/website-error.log
+        # Possible values include: debug, info, notice, warn, error, crit,
+        # alert, emerg.
+        LogLevel warn
+
+        CustomLog /var/log/apache2/website-access.log combined
+        ServerSignature Off
+
+</VirtualHost>
+
